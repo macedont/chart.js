@@ -34,36 +34,56 @@ foreach ($sql as $value){
 </head>
 <body>
 
-<div class="container">
-    <canvas id="myChart"></canvas>
+<div class="container" style="background-color: ghostwhite">
+    <canvas style="padding: 20px" id="myChart"></canvas>
+
 </div>
 
 <script type="text/javascript">
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'line',
         data: {
             labels: [<?php echo $mes ?>],
             datasets:
             [{
+                type: "bar",
                 label: '2018',
                 data: [<?php echo $ano_2018; ?>],
-                backgroundColor: 'transparent',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 borderColor: 'rgba(255, 99, 132)',
                 borderWidth: 3
             },
             {
+                type: "bar",
                 label: '2019',
                 data: [<?php echo $ano_2019; ?>],
-                backgroundColor: 'transparent',
+                backgroundColor: 'rgba(0, 255, 255, 0.5)',
                 borderColor: 'rgba(0, 255, 255)',
                 borderWidth: 3
-            }]
+            },
+            {
+                type: 'line',
+                label: 'Meta 2018',
+                data: [120, 260, 360, 490, 530],
+                backgroundColor: 'transparent',
+                borderColor: 'rgba(255, 255, 0)',
+                borderWidth: 3,
+                // tension: false
+            },
+                {
+                    type: 'line',
+                    label: 'Meta 2019',
+                    data: [150, 290, 330, 530, 570],
+                    backgroundColor: 'transparent',
+                    borderColor: 'rgb(113,110,110)',
+                    borderWidth: 3,
+                    // tension: false
+                }]
         },
         options: {
             scales: {
                 y: {
-                    beginAtZero: false
+                    beginAtZero: false,
                 },
                 x: {
                     autoskip: true,
@@ -72,15 +92,8 @@ foreach ($sql as $value){
             },
             tooltips: {
                 mode: 'index'
-            },
-            Legend: {
-                display: true,
-                position: 'top',
-                labels: {
-                    fontColor: 'rgb(255, 255, 255)',
-                    fontSize: 16
-                }
             }
+            //indexAxis: 'y'  - grafico fica na horizontal
         }
     });
 </script>
